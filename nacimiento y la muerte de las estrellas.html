@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cosmos | El Universo y las Estrellas</title>
+
+<style>
+
+/* ========== CONFIGURACIÓN GENERAL ========== */
+
+:root {
+    --fondo: #070313;
+    --fondo2: #100820;
+    --morado: #792bc2;
+    --violeta: #b66cff;
+    --lila: #e3c5ff;
+    --blanco: #f8f3ff;
+    --texto: #c9bddb;
+    --borde: rgba(190,130,255,.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 95px;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: var(--fondo);
+    color: var(--blanco);
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    width: min(1150px, 90%);
+    margin: auto;
+}
+
+section {
+    scroll-margin-top: 100px;
+}
+
+/* ========== FONDO ESPACIAL ========== */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+
+    background:
+        radial-gradient(circle at 10% 20%, #44106b 0%, transparent 27%),
+        radial-gradient(circle at 90% 40%, #17175c 0%, transparent 30%),
+        radial-gradient(circle at 50% 90%, #390c54 0%, transparent 30%),
+        #070313;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: .22;
+
+    background-image:
+        radial-gradient(2px 2px at 30px 50px, white, transparent),
+        radial-gradient(1px 1px at 100px 130px, white, transparent),
+        radial-gradient(2px 2px at 200px 80px, #c78aff, transparent),
+        radial-gradient(1px 1px at 300px 200px, white, transparent);
+
+    background-size: 350px 250px;
+}
+
+/* ========== BARRA DE NAVEGACIÓN ========== */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background: rgba(9, 3, 23, .88);
+    backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid var(--borde);
+}
+
+.nav-content {
+    max-width: 1200px;
+    margin: auto;
+    min-height: 76px;
+    padding: 12px 25px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--lila);
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: var(--violeta);
+}
+
+.nav-links {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.nav-links a {
+    padding: 11px 18px;
+    border-radius: 30px;
+    color: #d9c8ed;
+    font-size: 14px;
+    transition: .3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    background: rgba(145, 65, 210, .22);
+    color: white;
+    box-shadow: inset 0 0 0 1px rgba(190,130,255,.3);
+}
+
+.menu-btn {
+    display: none;
+    background: transparent;
+    border: 1px solid var(--borde);
+    color: white;
+    border-radius: 10px;
+    padding: 9px 13px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+/* ========== PORTADA PRINCIPAL ========== */
+
+.hero {
+    min-height: 640px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+
+    background:
+        linear-gradient(90deg,
+            rgba(7,3,19,.98) 5%,
+            rgba(7,3,19,.8) 45%,
+            rgba(7,3,19,.15) 100%
+        ),
+        linear-gradient(0deg, #070313 0%, transparent 40%),
+        url("imagenes/estrellas.jpg") center/cover;
+}
+
+.hero-content {
+    width: min(1150px, 90%);
+    margin: auto;
+    padding: 100px 0;
+    position: relative;
+    z-index: 2;
+}
+
+.etiqueta {
+    display: inline-block;
+    padding: 9px 17px;
+    border: 1px solid rgba(193,133,255,.4);
+    border-radius: 30px;
+    background: rgba(110,35,165,.17);
+    color: #d9b5ff;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+}
+
+.hero h1 {
+    font-size: clamp(43px, 7vw, 78px);
+    line-height: 1.08;
+    max-width: 780px;
+    margin-bottom: 25px;
+    letter-spacing: -2px;
+}
+
+.hero h1 span {
+    color: var(--violeta);
+    text-shadow: 0 0 35px rgba(160,70,255,.65);
+}
+
+.hero p {
+    max-width: 580px;
+    font-size: 18px;
+    line-height: 1.9;
+    color: #d0c1e1;
+    margin-bottom: 35px;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 15px 27px;
+    border-radius: 35px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: .3s;
+}
+
+.btn-primary {
+    background: linear-gradient(120deg, #7227b5, #b35aff);
+    color: white;
+    box-shadow: 0 0 25px rgba(150,60,230,.3);
+}
+
+.btn-secondary {
+    border: 1px solid rgba(210,170,255,.5);
+    color: white;
+    background: rgba(20,10,40,.5);
+}
+
+.btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 25px rgba(180,100,255,.5);
+}
+
+/* ========== BARRA DE DATOS ========== */
+
+.stats {
+    position: relative;
+    z-index: 3;
+    margin-top: -35px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    background: rgba(23,12,44,.95);
+    border: 1px solid var(--borde);
+    border-radius: 18px;
+    backdrop-filter: blur(15px);
+    overflow: hidden;
+}
+
+.stat {
+    padding: 25px 15px;
+    text-align: center;
+    border-right: 1px solid var(--borde);
+}
+
+.stat:last-child {
+    border-right: none;
+}
+
+.stat strong {
+    display: block;
+    font-size: 27px;
+    color: var(--violeta);
+    margin-bottom: 5px;
+}
+
+.stat span {
+    font-size: 12px;
+    color: var(--texto);
+    letter-spacing: 1px;
+}
+
+/* ========== TÍTULOS DE SECCIÓN ========== */
+
+.section-heading {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 55px;
+}
+
+.section-heading small {
+    color: var(--violeta);
+    letter-spacing: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.section-heading h2 {
+    font-size: clamp(30px,5vw,43px);
+    margin: 16px 0;
+}
+
+.section-heading p {
+    color: var(--texto);
+    line-height: 1.8;
+    font-size: 16px;
+}
+
+/* ========== INTRODUCCIÓN ========== */
+
+.intro {
+    padding: 120px 0 70px;
+}
+
+.intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 55px;
+    align-items: center;
+}
+
+.intro-image {
+    position: relative;
+}
+
+.intro-image img {
+    width: 100%;
+    height: 390px;
+    object-fit: cover;
+    border-radius: 22px;
+    border: 1px solid var(--borde);
+    box-shadow: 0 0 40px rgba(130,45,200,.25);
+}
+
+.intro-image::after {
+    content: "";
+    position: absolute;
+    inset: 15px -15px -15px 15px;
+    border: 1px solid rgba(190,120,255,.4);
+    border-radius: 22px;
+    z-index: -1;
+}
+
+.intro-text small {
+    color: var(--violeta);
+    letter-spacing: 3px;
+    font-weight: bold;
+}
+
+.intro-text h2 {
+    font-size: 37px;
+    margin: 18px 0;
+}
+
+.intro-text p {
+    color: var(--texto);
+    line-height: 2;
+    margin-bottom: 17px;
+}
+
+/* ========== CONTENIDO ========== */
+
+.content-section {
+    padding: 100px 0;
+    background: linear-gradient(
+        180deg,
+        transparent,
+        rgba(40,15,70,.24),
+        transparent
+    );
+}
+
+.topic-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 25px;
+}
+
+.topic-card {
+    background: linear-gradient(
+        145deg,
+        rgba(36,19,65,.95),
+        rgba(15,8,32,.97)
+    );
+
+    border: 1px solid var(--borde);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: .4s;
+}
+
+.topic-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(190,120,255,.7);
+    box-shadow: 0 15px 40px rgba(120,35,190,.2);
+}
+
+.topic-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+    transition: .5s;
+}
+
+.topic-card:hover img {
+    transform: scale(1.04);
+}
+
+.topic-image {
+    overflow: hidden;
+}
+
+.topic-info {
+    padding: 27px;
+}
+
+.topic-number {
+    color: var(--violeta);
+    font-size: 12px;
+    letter-spacing: 3px;
+    font-weight: bold;
+}
+
+.topic-info h3 {
+    font-size: 23px;
+    margin: 13px 0;
+    color: #eedcff;
+}
+
+.topic-info p {
+    color: var(--texto);
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+/* ========== LÍNEA DEL TIEMPO ========== */
+
+.timeline-section {
+    padding: 100px 0;
+}
+
+.timeline {
+    max-width: 850px;
+    margin: auto;
+    position: relative;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 24px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(
+        #7423b5,
+        #c37cff,
+        #7423b5
+    );
+}
+
+.timeline-item {
+    position: relative;
+    padding: 0 0 40px 75px;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: 14px;
+    top: 5px;
+    width: 22px;
+    height: 22px;
+    background: #a64be8;
+    border: 4px solid #2d1646;
+    border-radius: 50%;
+    box-shadow: 0 0 15px #a64be8;
+}
+
+.timeline-item h3 {
+    font-size: 22px;
+    color: var(--lila);
+    margin-bottom: 10px;
+}
+
+.timeline-item p {
+    color: var(--texto);
+    line-height: 1.9;
+}
+
+/* ========== INFORMACIÓN ========== */
+
+.info-section {
+    padding: 100px 0;
+}
+
+.importance {
+    padding: 45px;
+    border-radius: 24px;
+    background:
+        radial-gradient(circle at 90% 10%, rgba(125,45,190,.3), transparent 40%),
+        #170b2b;
+    border: 1px solid var(--borde);
+}
+
+.importance h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.importance p {
+    color: var(--texto);
+    line-height: 2;
+    max-width: 900px;
+}
+
+/* ========== CURIOSIDADES ========== */
+
+.facts-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 18px;
+    margin-top: 35px;
+}
+
+.fact {
+    background: rgba(44,20,75,.7);
+    padding: 27px 22px;
+    border-radius: 17px;
+    border: 1px solid var(--borde);
+    transition: .3s;
+}
+
+.fact:hover {
+    background: rgba(77,35,115,.7);
+    transform: translateY(-5px);
+}
+
+.fact .symbol {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.fact p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #ded1ee;
+}
+
+/* ========== CONCLUSIÓN ========== */
+
+.conclusion {
+    text-align: center;
+    padding: 70px 35px;
+    margin-top: 65px;
+    border-radius: 25px;
+
+    background:
+        radial-gradient(circle at center, rgba(112,35,175,.4), transparent 70%),
+        #140922;
+
+    border: 1px solid var(--borde);
+}
+
+.conclusion h2 {
+    font-size: 35px;
+    margin-bottom: 20px;
+}
+
+.conclusion p {
+    max-width: 800px;
+    margin: auto;
+    color: var(--texto);
+    line-height: 2;
+}
+
+/* ========== CONTACTO ========== */
+
+.contact-section {
+    padding: 100px 0;
+}
+
+.contact-box {
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+    border-radius: 25px;
+    overflow: hidden;
+    border: 1px solid var(--borde);
+    background: #170b2b;
+}
+
+.contact-info {
+    padding: 45px;
+    background: linear-gradient(145deg,#522078,#200d3d);
+}
+
+.contact-info h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.contact-info p {
+    color: #e1d2f1;
+    line-height: 1.9;
+}
+
+.contact-form {
+    padding: 45px;
+}
+
+.contact-form label {
+    display: block;
+    color: var(--lila);
+    font-size: 14px;
+    margin: 18px 0 9px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    color: white;
+    font-size: 15px;
+    font-family: inherit;
+    background: #0c061b;
+    border: 1px solid var(--borde);
+    border-radius: 11px;
+    outline: none;
+    transition: .3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--violeta);
+    box-shadow: 0 0 12px rgba(170,90,255,.2);
+}
+
+.contact-form textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+.contact-form button {
+    margin-top: 23px;
+    padding: 15px 25px;
+    width: 100%;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(120deg,#7025ad,#b35aff);
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.contact-form button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(180,90,255,.5);
+}
+
+#respuesta {
+    margin-top: 18px;
+    color: #d9b3ff;
+    line-height: 1.7;
+}
+
+/* ========== FOOTER ========== */
+
+footer {
+    border-top: 1px solid var(--borde);
+    padding: 45px 20px;
+    text-align: center;
+    background: #080313;
+}
+
+.footer-logo {
+    font-size: 23px;
+    font-weight: bold;
+    color: var(--lila);
+    margin-bottom: 13px;
+}
+
+footer p {
+    color: #9585aa;
+    font-size: 13px;
+    line-height: 2;
+}
+
+/* ========== ANIMACIONES DE ENTRADA ========== */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity .7s ease, transform .7s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ========== RESPONSIVE ========== */
+
+@media(max-width: 800px) {
+
+    .menu-btn {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 75px;
+        left: 0;
+        width: 100%;
+        padding: 18px;
+        background: rgba(12,4,28,.98);
+        flex-direction: column;
+        border-bottom: 1px solid var(--borde);
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links a {
+        width: 100%;
+        text-align: center;
+    }
+
+    .intro-grid,
+    .contact-box {
+        grid-template-columns: 1fr;
+    }
+
+    .intro-image img {
+        height: 300px;
+    }
+
+    .facts-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media(max-width: 550px) {
+
+    .hero {
+        min-height: 570px;
+        background-position: 60% center;
+    }
+
+    .hero h1 {
+        font-size: 43px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stat {
+        border-right: none;
+        border-bottom: 1px solid var(--borde);
+    }
+
+    .stat:last-child {
+        border-bottom: none;
+    }
+
+    .topic-grid,
+    .facts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-heading h2 {
+        font-size: 30px;
+    }
+
+    .importance,
+    .contact-info,
+    .contact-form {
+        padding: 27px 20px;
+    }
+
+    .conclusion {
+        padding: 45px 20px;
+    }
+
+    .conclusion h2 {
+        font-size: 28px;
+    }
+}
+
+@media(prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVEGACIÓN -->
+
+<nav class="navbar">
+    <div class="nav-content">
+
+        <a href="#inicio" class="logo">COSMOS<span>.</span></a>
+
+        <button class="menu-btn" id="menuBtn"
+        aria-label="Abrir menú" aria-expanded="false">
+            ☰
+        </button>
+
+        <div class="nav-links" id="navLinks">
+            <a href="#inicio">Inicio</a>
+            <a href="#contenido">Contenido</a>
+            <a href="#informacion">Información</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+
+    </div>
+</nav>
+
+<!-- PORTADA -->
+
+<header class="hero" id="inicio">
+
+    <div class="hero-content">
+
+        <span class="etiqueta">Explorando el universo</span>
+
+        <h1>
+            Un universo<br>
+            lleno de <span>estrellas.</span>
+        </h1>
+
+        <p>
+            Descubre los misterios del cosmos, conoce cómo nacen
+            las estrellas y explora los extraordinarios fenómenos
+            que transforman nuestro universo.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="#contenido" class="btn btn-primary">
+                Explorar universo →
+            </a>
+
+            <a href="#informacion" class="btn btn-secondary">
+                Descubrir más
+            </a>
+        </div>
+
+    </div>
+
+</header>
+
+<!-- ESTADÍSTICAS -->
+
+<div class="stats container">
+
+    <div class="stats-grid">
+
+        <div class="stat">
+            <strong>🌌</strong>
+            <span>GALAXIAS</span>
+        </div>
+
+        <div class="stat">
+            <strong>⭐</strong>
+            <span>ESTRELLAS</span>
+        </div>
+
+        <div class="stat">
+            <strong>∞</strong>
+            <span>MISTERIOS POR DESCUBRIR</span>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- INTRODUCCIÓN -->
+
+<section class="intro container reveal">
+
+    <div class="intro-grid">
+
+        <div class="intro-image">
+            <img src="imagenes/estrellas.jpg"
+            alt="Paisaje de estrellas en el universo">
+        </div>
+
+        <div class="intro-text">
+
+            <small>BIENVENIDO AL COSMOS</small>
+
+            <h2>Mucho más allá de lo que podemos imaginar.</h2>
+
+            <p>
+                El universo es un lugar inmenso lleno de galaxias,
+                estrellas, planetas y fenómenos extraordinarios.
+            </p>
+
+            <p>
+                Las estrellas son fundamentales para comprender
+                cómo evoluciona el cosmos. Su nacimiento, su vida
+                y su transformación forman parte de uno de los
+                procesos más fascinantes de la astronomía.
+            </p>
+
+            <a href="#contenido" class="btn btn-primary">
+                Conocer las estrellas →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CONTENIDO -->
+
+<section class="content-section" id="contenido">
+
+    <div class="container">
+
+        <div class="section-heading reveal">
+
+            <small>CONOCE EL COSMOS</small>
+
+            <h2>El ciclo de vida de las estrellas</h2>
+
+            <p>
+                Cada estrella tiene una historia diferente.
+                Conoce las etapas que atraviesa desde su nacimiento
+                hasta su transformación final.
+            </p>
+
+        </div>
+
+        <div class="topic-grid">
+
+            <article class="topic-card reveal">
+
+                <div class="topic-image">
+                    <img src="imagenes/nebulosa.jpg"
+                    alt="Nebulosa donde nacen las estrellas">
+                </div>
+
+                <div class="topic-info">
+
+                    <span class="topic-number">01 / NACIMIENTO</span>
+
+                    <h3>¿Cómo nacen las estrellas?</h3>
+
+                    <p>
+                        Las estrellas nacen en enormes nubes de gas
+                        y polvo llamadas nebulosas. La gravedad
+                        provoca que estos materiales se junten y
+                        formen una protoestrella. Cuando el núcleo
+                        alcanza una temperatura muy elevada,
+                        comienza la fusión nuclear.
+                    </p>
+
+                </div>
+
+            </article>
+
+            <article class="topic-card reveal">
+
+                <div class="topic-image">
+                    <img src="imagenes/vida-estelar.jpg"
+                    alt="Estrellas durante su vida">
+                </div>
+
+                <div class="topic-info">
+
+                    <span class="topic-number">02 / EVOLUCIÓN</span>
+
+                    <h3>La vida de una estrella</h3>
+
+                    <p>
+                        Durante la mayor parte de su vida, una
+                        estrella transforma hidrógeno en helio
+                        mediante la fusión nuclear. Este proceso
+                        libera energía en forma de luz y calor.
+                        Su duración depende principalmente de su masa.
+                    </p>
+
+                </div>
+
+            </article>
+
+            <article class="topic-card reveal">
+
+                <div class="topic-image">
+                    <img src="imagenes/estrella-roja.jpg"
+                    alt="Gigante roja">
+                </div>
+
+                <div class="topic-info">
+
+                    <span class="topic-number">03 / TRANSFORMACIÓN</span>
+
+                    <h3>La muerte de las estrellas</h3>
+
+                    <p>
+                        Cuando una estrella agota el combustible
+                        de su núcleo, comienza a transformarse.
+                        Las estrellas como el Sol pueden convertirse
+                        en gigantes rojas y después en enanas blancas.
+                    </p>
+
+                </div>
+
+            </article>
+
+            <article class="topic-card reveal">
+
+                <div class="topic-image">
+                    <img src="imagenes/supernova.jpg"
+                    alt="Explosión de una supernova">
+                </div>
+
+                <div class="topic-info">
+
+                    <span class="topic-number">04 / EXPLOSIÓN</span>
+
+                    <h3>¿Qué es una supernova?</h3>
+
+                    <p>
+                        Una supernova es una explosión estelar
+                        extremadamente energética. Puede ocurrir
+                        cuando el núcleo de una estrella masiva
+                        colapsa o cuando una enana blanca
+                        experimenta una explosión termonuclear.
+                    </p>
+
+                </div>
+
+            </article>
+
+            <article class="topic-card reveal">
+
+                <div class="topic-image">
+                    <img src="imagenes/agujero-negro.jpg"
+                    alt="Representación de un agujero negro">
+                </div>
+
+                <div class="topic-info">
+
+                    <span class="topic-number">05 / DESTINO FINAL</span>
+
+                    <h3>¿Qué queda después?</h3>
+
+                    <p>
+                        Después de una supernova puede quedar
+                        una estrella de neutrones o un agujero
+                        negro, dependiendo de la masa del núcleo
+                        restante. El material expulsado forma
+                        remanentes de supernova.
+                    </p>
+
+                </div>
+
+            </article>
+
+            <article class="topic-card reveal">
+
+                <div class="topic-image">
+                    <img src="imagenes/estrellas.jpg"
+                    alt="Estrellas en una galaxia">
+                </div>
+
+                <div class="topic-info">
+
+                    <span class="topic-number">06 / IMPORTANCIA</span>
+
+                    <h3>El legado de las estrellas</h3>
+
+                    <p>
+                        Las explosiones estelares distribuyen
+                        elementos químicos por el universo.
+                        Estos materiales pueden participar en
+                        la formación de nuevas estrellas y planetas.
+                    </p>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- LÍNEA DEL TIEMPO -->
+
+<section class="timeline-section container">
+
+    <div class="section-heading reveal">
+
+        <small>EVOLUCIÓN ESTELAR</small>
+
+        <h2>El viaje de una estrella</h2>
+
+        <p>
+            Las diferentes etapas que puede atravesar
+            una estrella durante su existencia.
+        </p>
+
+    </div>
+
+    <div class="timeline">
+
+        <div class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <h3>01. Nebulosa</h3>
+            <p>
+                Una nube de gas y polvo comienza a concentrarse
+                por efecto de la gravedad.
+            </p>
+        </div>
+
+        <div class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <h3>02. Protoestrella</h3>
+            <p>
+                El material se concentra y aumenta su temperatura
+                mientras se forma la futura estrella.
+            </p>
+        </div>
+
+        <div class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <h3>03. Estrella estable</h3>
+            <p>
+                Comienza la fusión nuclear y la estrella
+                produce energía durante gran parte de su vida.
+            </p>
+        </div>
+
+        <div class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <h3>04. Transformación</h3>
+            <p>
+                Al cambiar el combustible disponible,
+                la estrella evoluciona de acuerdo con su masa.
+            </p>
+        </div>
+
+        <div class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <h3>05. Destino final</h3>
+            <p>
+                Puede terminar como enana blanca, estrella
+                de neutrones o agujero negro.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- INFORMACIÓN -->
+
+<section class="info-section" id="informacion">
+
+    <div class="container">
+
+        <div class="section-heading reveal">
+
+            <small>INFORMACIÓN ASTRONÓMICA</small>
+
+            <h2>La importancia de las estrellas</h2>
+
+            <p>
+                Las estrellas no solamente iluminan el espacio:
+                también contribuyen a la evolución de todo el universo.
+            </p>
+
+        </div>
+
+        <div class="importance reveal">
+
+            <h2>El universo se transforma constantemente.</h2>
+
+            <p>
+                Las explosiones estelares distribuyen elementos
+                químicos por el espacio y enriquecen las nubes
+                de gas y polvo. Estos materiales pueden participar
+                en la formación de nuevas estrellas y planetas.
+
+                Por eso, el final de una estrella también puede
+                representar el comienzo de otros sistemas
+                estelares y mundos.
+            </p>
+
+        </div>
+
+        <div class="section-heading reveal" style="margin-top:85px">
+
+            <small>DATOS INTERESANTES</small>
+
+            <h2>Curiosidades del universo</h2>
+
+        </div>
+
+        <div class="facts-grid">
+
+            <div class="fact reveal">
+                <div class="symbol">☀️</div>
+                <p>El Sol es una estrella y es el centro de nuestro sistema solar.</p>
+            </div>
+
+            <div class="fact reveal">
+                <div class="symbol">🌟</div>
+                <p>El Sol no tiene suficiente masa para convertirse en supernova.</p>
+            </div>
+
+            <div class="fact reveal">
+                <div class="symbol">💥</div>
+                <p>Las supernovas pueden brillar muchísimo durante un tiempo breve.</p>
+            </div>
+
+            <div class="fact reveal">
+                <div class="symbol">🪐</div>
+                <p>Los elementos creados por las estrellas forman parte de planetas.</p>
+            </div>
+
+            <div class="fact reveal">
+                <div class="symbol">🌌</div>
+                <p>Existen miles de millones de galaxias en el universo observable.</p>
+            </div>
+
+            <div class="fact reveal">
+                <div class="symbol">🔭</div>
+                <p>Observar el espacio también significa observar luz que viajó durante mucho tiempo.</p>
+            </div>
+
+        </div>
+
+        <div class="conclusion reveal">
+
+            <h2>Una historia que nunca termina</h2>
+
+            <p>
+                El nacimiento y la muerte de las estrellas son
+                procesos fundamentales para la evolución del
+                universo. Las supernovas demuestran que el final
+                de una estrella también puede contribuir a la
+                formación de nuevos mundos y sistemas estelares.
+                El cosmos continúa cambiando y todavía guarda
+                muchos misterios por descubrir.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CONTACTO -->
+
+<section class="contact-section container" id="contacto">
+
+    <div class="section-heading reveal">
+
+        <small>ESTAMOS EN CONTACTO</small>
+
+        <h2>Comparte tu opinión</h2>
+
+        <p>
+            Nos interesa conocer qué aprendiste sobre
+            el universo y qué te pareció este proyecto.
+        </p>
+
+    </div>
+
+    <div class="contact-box reveal">
+
+        <div class="contact-info">
+
+            <h2>Conectemos con el cosmos ✨</h2>
+
+            <p>
+                Gracias por visitar nuestra página.
+                Esperamos que hayas disfrutado este recorrido
+                por el nacimiento, la vida y la muerte de las estrellas.
+            </p>
+
+        </div>
+
+        <form class="contact-form" onsubmit="enviarMensaje(event)">
+
+            <label for="nombre">Nombre</label>
+
+            <input
+                type="text"
+                id="nombre"
+                placeholder="Tu nombre"
+                required
+            >
+
+            <label for="correo">Correo electrónico</label>
+
+            <input
+                type="email"
+                id="correo"
+                placeholder="Tu correo electrónico"
+                required
+            >
+
+            <label for="mensaje">Tu mensaje</label>
+
+            <textarea
+                id="mensaje"
+                placeholder="Escribe tu opinión..."
+                required
+            ></textarea>
+
+            <button type="submit">
+                Enviar mensaje ✦
+            </button>
+
+            <p id="respuesta" aria-live="polite"></p>
+
+        </form>
+
+    </div>
+
+</section>
+
+<!-- PIE DE PÁGINA -->
+
+<footer>
+
+    <div class="footer-logo">COSMOS.</div>
+
+    <p>El Universo y sus misterios</p>
+
+    <p>Proyecto escolar de astronomía</p>
+
+    <p>© 2026 | Todos los derechos reservados</p>
+
+</footer>
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+/* MENÚ PARA CELULARES */
+
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+menuBtn.addEventListener("click", () => {
+
+    const abierto = navLinks.classList.toggle("open");
+
+    menuBtn.setAttribute("aria-expanded", abierto);
+
+    menuBtn.textContent = abierto ? "✕" : "☰";
+
+});
+
+/* CERRAR MENÚ AL SELECCIONAR UN APARTADO */
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        navLinks.classList.remove("open");
+        menuBtn.textContent = "☰";
+        menuBtn.setAttribute("aria-expanded", "false");
+
+    });
+
+});
+
+/* ANIMACIONES AL DESPLAZARSE */
+
+const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+
+            entry.target.classList.add("visible");
+
+            observer.unobserve(entry.target);
+
+        }
+
+    });
+
+}, {
+    threshold: 0.12
+});
+
+document.querySelectorAll(".reveal").forEach(element => {
+
+    observer.observe(element);
+
+});
+
+/* FORMULARIO */
+
+function enviarMensaje(event) {
+
+    event.preventDefault();
+
+    const nombre = document
+        .getElementById("nombre")
+        .value.trim();
+
+    document.getElementById("respuesta").textContent =
+        "¡Gracias, " + nombre +
+        "! Tu mensaje fue recibido en este formulario. ✨";
+
+    event.target.reset();
+
+}
+
+</script>
+
+</body>
+</html>
